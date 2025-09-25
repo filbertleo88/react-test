@@ -43,11 +43,7 @@ export default function App() {
     });
   };
 
-  const getTotalPrice = () =>
-    Object.values(order).reduce(
-      (total, item) => total + item.price * item.quantity,
-      0
-    );
+  const getTotalPrice = () => Object.values(order).reduce((total, item) => total + item.price * item.quantity, 0);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -67,46 +63,33 @@ export default function App() {
       alert("Please fill in all required customer information.");
       return;
     }
-    alert(
-      `Order submitted successfully!\nTotal: $${getTotalPrice().toFixed(
-        2
-      )}\nThank you, ${customerInfo.name}!`
-    );
+    alert(`Order submitted successfully!\nTotal: Rp ${getTotalPrice()}\nThank you, ${customerInfo.name}!`);
   };
 
   return (
     <div className="container">
+      {/* Header  */}
       <header>
         <h1>Food Ordering App</h1>
-        <p className="app-description">
-          Order your favorite meals with just a few clicks!
-        </p>
+        <p className="app-description">Order your favorite meals with just a few clicks!</p>
       </header>
 
       <div className="app-content">
+        {/* Menu Order */}
         <section className="menu-section">
           <h2 className="section-title">Our Menu</h2>
           <div className="menu-grid">
             {menuItems.map((item) => (
-              <MenuItem
-                key={item.id}
-                item={item}
-                quantity={order[item.id] ? order[item.id].quantity : 0}
-                onAdd={() => addToOrder(item.id)}
-                onRemove={() => removeFromOrder(item.id)}
-              />
+              <MenuItem key={item.id} item={item} quantity={order[item.id] ? order[item.id].quantity : 0} onAdd={() => addToOrder(item.id)} onRemove={() => removeFromOrder(item.id)} />
             ))}
           </div>
         </section>
 
+        {/* Pesanan dan Informasi Pelanggan */}
         <section className="order-section">
           <h2 className="section-title">Your Order</h2>
           <OrderSummary order={order} totalPrice={getTotalPrice()} />
-          <CustomerForm
-            customerInfo={customerInfo}
-            onInputChange={handleInputChange}
-            onSubmit={handleSubmit}
-          />
+          <CustomerForm customerInfo={customerInfo} onInputChange={handleInputChange} onSubmit={handleSubmit} />
         </section>
       </div>
     </div>

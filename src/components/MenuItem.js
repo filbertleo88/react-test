@@ -6,7 +6,7 @@ export default function MenuItem({ item, quantity, onAdd, onRemove }) {
         <h3 className="menu-item-title">{item.name}</h3>
         <p className="menu-item-description">{item.description}</p>
         <div className="menu-item-footer">
-          <span className="menu-item-price">${item.price.toFixed(2)}</span>
+          <span className="menu-item-price">Rp {item.price}</span>
           <div className="quantity-controls">
             <button className="quantity-btn" onClick={onRemove} disabled={quantity === 0}>
               -

@@ -12,7 +12,7 @@ export default function OrderSummary({ order, totalPrice }) {
               <span className="order-item-name">{item.name}</span>
               <span className="order-item-quantity">x{item.quantity}</span>
               <span className="order-item-price">
-                ${(item.price * item.quantity).toFixed(2)}
+                Rp {(item.price * item.quantity)}
               </span>
             </div>
           ))
@@ -23,15 +23,15 @@ export default function OrderSummary({ order, totalPrice }) {
         <div className="order-summary">
           <div className="summary-row">
             <span>Subtotal:</span>
-            <span>${totalPrice.toFixed(2)}</span>
+            <span>Rp {totalPrice}</span>
           </div>
           <div className="summary-row">
-            <span>Tax (8%):</span>
-            <span>${(totalPrice * 0.08).toFixed(2)}</span>
+            <span>Tax (10%):</span>
+            <span>Rp {(totalPrice * 0.10)}</span>    
           </div>
           <div className="summary-row total">
             <span>Total:</span>
-            <span>${(totalPrice * 1.08).toFixed(2)}</span>
+            <span>Rp {(totalPrice * 1.10).toFixed(0)}</span>
           </div>
         </div>
       )}
