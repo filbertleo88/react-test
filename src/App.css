@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,218 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+/* General App styling */
+.App {
+  text-align: center;
+  font-family: "Poppins", Arial, sans-serif;
+  background: #fafafa;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
+
+/* Header / Navbar */
+.App-header {
+  background: #ff6b35;
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.App-header button {
+  background: #fff;
+  color: #ff6b35;
+  border: none;
+  border-radius: 8px;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.App-header button:hover {
+  background: #ffe3d6;
+}
+
+/* Landing page greeting */
+.greeting {
+  margin: 2rem auto;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+/* Menu section */
+.menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.menu-item {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.menu-item:hover {
+  transform: translateY(-5px);
+}
+
+.menu-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 0.8rem;
+}
+
+.menu-item h3 {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.menu-item p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.price {
+  font-weight: bold;
+  color: #ff6b35;
+  margin: 0.5rem 0;
+}
+
+.menu-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+.menu-controls button {
+  background: #ff6b35;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.9rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.menu-controls button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.menu-controls button:hover:not(:disabled) {
+  background: #e85c2a;
+}
+
+.in-order {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #28a745;
+}
+
+/* Order summary */
+.order-summary {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin: 2rem auto;
+  max-width: 600px;
+  text-align: left;
+}
+
+.order-summary ul {
+  list-style: none;
+  padding: 0;
+}
+
+.order-summary li {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.order-summary h3 {
+  margin-top: 1rem;
+  font-size: 1.3rem;
+  color: #ff6b35;
+}
+
+/* Customer form */
+.customer-form {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin: 2rem auto;
+  max-width: 600px;
+  text-align: left;
+}
+
+.customer-form h3 {
+  margin-bottom: 1rem;
+  color: #ff6b35;
+}
+
+.customer-form label {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.customer-form input,
+.customer-form textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-top: 0.3rem;
+  font-size: 0.95rem;
+}
+
+.customer-form button {
+  margin-top: 1rem;
+  background: #ff6b35;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background 0.2s ease;
+}
+
+.customer-form button:hover {
+  background: #e85c2a;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menu {
+    grid-template-columns: 1fr;
+  }
+
+  .App-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+

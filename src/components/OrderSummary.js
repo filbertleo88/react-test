@@ -1,19 +1,17 @@
-export default function OrderSummary({ order, totalPrice }) {
+export default function OrderSummary({ order, totalPrice, language }) {
   const orderItems = Object.values(order);
 
   return (
     <div>
       <div className="order-items">
         {orderItems.length === 0 ? (
-          <div className="empty-order">Your order is empty</div>
+          <div className="empty-order">{language === "en" ? "Your cart is empty." : "Keranjang Anda kosong."}</div>
         ) : (
           orderItems.map((item) => (
             <div key={item.id} className="order-item">
               <span className="order-item-name">{item.name}</span>
               <span className="order-item-quantity">x{item.quantity}</span>
-              <span className="order-item-price">
-                Rp {(item.price * item.quantity)}
-              </span>
+              <span className="order-item-price">Rp {(item.price * item.quantity).toLocaleString()}</span>
             </div>
           ))
         )}
@@ -22,16 +20,16 @@ export default function OrderSummary({ order, totalPrice }) {
       {orderItems.length > 0 && (
         <div className="order-summary">
           <div className="summary-row">
-            <span>Subtotal:</span>
-            <span>Rp {totalPrice}</span>
+            <span>{language === "en" ? "Subtotal:" : "Subtotal:"}</span>
+            <span>Rp {totalPrice.toLocaleString()}</span>
           </div>
           <div className="summary-row">
-            <span>Tax (10%):</span>
-            <span>Rp {(totalPrice * 0.10)}</span>    
+            <span>{language === "en" ? "Tax (10%):" : "Pajak (10%):"}</span>
+            <span>Rp {(totalPrice * 0.1).toLocaleString()}</span>
           </div>
           <div className="summary-row total">
-            <span>Total:</span>
-            <span>Rp {(totalPrice * 1.10).toFixed(0)}</span>
+            <strong>{language === "en" ? "Total:" : "Total:"}</strong>
+            <span>Rp {(totalPrice * 1.1).toLocaleString()}</span>
           </div>
         </div>
       )}

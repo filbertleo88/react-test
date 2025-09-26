@@ -1,17 +1,3 @@
-/* body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
-
 * {
   margin: 0;
   padding: 0;
@@ -26,7 +12,7 @@ body {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -44,6 +30,115 @@ header {
 h1 {
   font-size: 2.5rem;
   margin-bottom: 10px;
+}
+
+/* === Landing Page Styling === */
+.landing-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* background: linear-gradient(135deg, #fff6f0, #ffece2); */
+  padding: 2rem;
+}
+
+.landing-page h1 {
+  font-size: 2.2rem;
+  color: #ff6b35;
+  margin-bottom: 0.5rem;
+}
+
+.landing-page p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.landing-form {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.landing-form input {
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  outline: none;
+  width: 220px;
+  transition: border-color 0.2s;
+}
+
+.landing-form input:focus {
+  border-color: #ff6b35;
+}
+
+.landing-form button {
+  background: #ff6b35;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.landing-form button:hover {
+  background: #e45a28;
+}
+
+.language-toggle {
+  /* background: transparent; */
+  border: 2px solid #ff6b35;
+  color: #ff6b35;
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.language-toggle:hover {
+  background: #ff6b35;
+  color: #fff;
+}
+
+/* Category filter buttons */
+.category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.category-filters button {
+  background: #fff;
+  border: 2px solid #ff6b35;
+  color: #ff6b35;
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px; /* pill shape */
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.category-filters button:hover {
+  background: #ffe3d6;
+}
+
+.category-filters button.active {
+  background: #ff6b35;
+  color: #fff;
+  border-color: #ff6b35;
 }
 
 .app-description {
