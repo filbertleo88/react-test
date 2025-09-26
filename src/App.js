@@ -101,6 +101,7 @@ import { menuItems } from "./data";
 import MenuItem from "./components/MenuItem";
 import OrderSummary from "./components/OrderSummary";
 import CustomerForm from "./components/CustomerForm";
+import BackToTop from "./components/BackToTop";
 import "./index.css";
 
 export default function App() {
@@ -258,6 +259,7 @@ export default function App() {
           </div>
         </>
       )}
+      <BackToTop />
     </div>
   );
 }
