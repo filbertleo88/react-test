@@ -1,101 +1,3 @@
-// import { useState } from "react";
-// import { menuItems } from "./data";
-// import MenuItem from "./components/MenuItem";
-// import OrderSummary from "./components/OrderSummary";
-// import CustomerForm from "./components/CustomerForm";
-// import "./index.css";
-
-// export default function App() {
-//   const [order, setOrder] = useState({});
-//   const [customerInfo, setCustomerInfo] = useState({
-//     name: "",
-//     phone: "",
-//     address: "",
-//     notes: "",
-//   });
-
-//   const addToOrder = (itemId) => {
-//     setOrder((prev) => {
-//       const newOrder = { ...prev };
-//       if (newOrder[itemId]) {
-//         newOrder[itemId].quantity += 1;
-//       } else {
-//         newOrder[itemId] = {
-//           ...menuItems.find((i) => i.id === itemId),
-//           quantity: 1,
-//         };
-//       }
-//       return newOrder;
-//     });
-//   };
-
-//   const removeFromOrder = (itemId) => {
-//     setOrder((prev) => {
-//       const newOrder = { ...prev };
-//       if (newOrder[itemId]) {
-//         if (newOrder[itemId].quantity > 1) {
-//           newOrder[itemId].quantity -= 1;
-//         } else {
-//           delete newOrder[itemId];
-//         }
-//       }
-//       return newOrder;
-//     });
-//   };
-
-//   const getTotalPrice = () => Object.values(order).reduce((total, item) => total + item.price * item.quantity, 0);
-
-//   const handleInputChange = (e) => {
-//     const { name, value } = e.target;
-//     setCustomerInfo((prev) => ({
-//       ...prev,
-//       [name]: value,
-//     }));
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     if (Object.keys(order).length === 0) {
-//       alert("Please add items to your order before submitting.");
-//       return;
-//     }
-//     if (!customerInfo.name || !customerInfo.phone || !customerInfo.address) {
-//       alert("Please fill in all required customer information.");
-//       return;
-//     }
-//     alert(`Order submitted successfully!\nTotal: Rp ${getTotalPrice()}\nThank you, ${customerInfo.name}!`);
-//   };
-
-//   return (
-//     <div className="container">
-//       {/* Header  */}
-//       <header>
-//         <h1>Food Ordering App</h1>
-//         <p className="app-description">Order your favorite meals with just a few clicks!</p>
-//       </header>
-
-//       <div className="app-content">
-//         {/* Menu Order */}
-//         <section className="menu-section">
-//           <h2 className="section-title">Our Menu</h2>
-//           <div className="menu-grid">
-//             {menuItems.map((item) => (
-//               <MenuItem key={item.id} item={item} quantity={order[item.id] ? order[item.id].quantity : 0} onAdd={() => addToOrder(item.id)} onRemove={() => removeFromOrder(item.id)} />
-//             ))}
-//           </div>
-//         </section>
-
-//         {/* Pesanan dan Informasi Pelanggan */}
-//         <section className="order-section">
-//           <h2 className="section-title">Your Order</h2>
-//           <OrderSummary order={order} totalPrice={getTotalPrice()} />
-//           <CustomerForm customerInfo={customerInfo} onInputChange={handleInputChange} onSubmit={handleSubmit} />
-//         </section>
-//       </div>
-//     </div>
-//   );
-// }
-
 import { useState } from "react";
 import { menuItems } from "./data";
 import MenuItem from "./components/MenuItem";
@@ -116,6 +18,17 @@ export default function App() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [isStarted, setIsStarted] = useState(false); // Landing page control
   const [userName, setUserName] = useState("");
+
+  // Landing page submit
+  const handleStart = (e) => {
+    e.preventDefault();
+    if (!userName.trim()) {
+      alert(language === "en" ? "Please enter your name to continue." : "Silakan masukkan nama Anda untuk melanjutkan.");
+      return;
+    }
+    setIsStarted(true);
+    setCustomerInfo((prev) => ({ ...prev, name: userName }));
+  };
 
   // Add to order
   const addToOrder = (itemId) => {
@@ -184,15 +97,14 @@ export default function App() {
   // Available categories
   const categories = ["All", "Food", "Drinks", "Snacks"];
 
-  // Landing page submit
-  const handleStart = (e) => {
-    e.preventDefault();
-    if (!userName.trim()) {
-      alert(language === "en" ? "Please enter your name to continue." : "Silakan masukkan nama Anda untuk melanjutkan.");
-      return;
+  // Get recommendations based on gender
+  const getRecommendations = () => {
+    if (customerInfo.gender === "male") {
+      return menuItems.filter((item) => item.category === "Food").slice(0, 3); // example: first 3 foods
+    } else if (customerInfo.gender === "female") {
+      return menuItems.filter((item) => item.category === "Drinks").slice(0, 3); // example: first 3 drinks
     }
-    setIsStarted(true);
-    setCustomerInfo((prev) => ({ ...prev, name: userName }));
+    return [];
   };
 
   return (
@@ -200,13 +112,20 @@ export default function App() {
       {/* Landing Page */}
       {!isStarted ? (
         <div className="landing-page">
-          <h1>🍽️ Food Ordering App</h1>
+          <h1>🍽️ Makan.in</h1>
           <p>{language === "en" ? "Welcome! Please enter your name to start ordering." : "Selamat datang! Masukkan nama Anda untuk mulai memesan."}</p>
 
           <form onSubmit={handleStart} className="landing-form">
             <input type="text" placeholder={language === "en" ? "Enter your name" : "Masukkan nama Anda"} value={userName} onChange={(e) => setUserName(e.target.value)} required />
             <button type="submit">{language === "en" ? "Start Ordering" : "Mulai Memesan"}</button>
           </form>
+
+          {/* Gender selection */}
+          <select value={customerInfo.gender || ""} onChange={(e) => setCustomerInfo((prev) => ({ ...prev, gender: e.target.value }))} required>
+            <option value="">{language === "en" ? "Select Gender" : "Pilih Jenis Kelamin"}</option>
+            <option value="male">{language === "en" ? "Male" : "Laki-laki"}</option>
+            <option value="female">{language === "en" ? "Female" : "Perempuan"}</option>
+          </select>
 
           {/* Language toggle */}
           <button className="language-toggle" onClick={() => setLanguage(language === "en" ? "id" : "en")}>
@@ -227,6 +146,18 @@ export default function App() {
               {language === "en" ? "Switch to Indonesian" : "Ganti ke Inggris"}
             </button>
           </header>
+
+          {/* Recommendations */}
+          {customerInfo.gender && (
+            <section className="recommend-section">
+              <h2 className="section-title">{language === "en" ? `Recommended for you, ${customerInfo.name}` : `Rekomendasi untuk Anda, ${customerInfo.name}`}</h2>
+              <div className="menu-grid">
+                {getRecommendations().map((item) => (
+                  <MenuItem key={item.id} item={item} quantity={order[item.id] ? order[item.id].quantity : 0} onAdd={() => addToOrder(item.id)} onRemove={() => removeFromOrder(item.id)} language={language} />
+                ))}
+              </div>
+            </section>
+          )}
 
           <div className="app-content">
             {/* Menu Section */}

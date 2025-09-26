@@ -103,6 +103,7 @@ h1 {
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
+  margin-top: 0.5rem;
 }
 
 .language-toggle:hover {
@@ -150,6 +151,13 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+}
+
+.recommend-section {
+  margin: 2rem 0;
+  padding: 1rem;
+  background: #fff7e6;
+  border-radius: 10px;
 }
 
 .menu-section {
